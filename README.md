@@ -1,2 +1,0 @@
-# StockApp
-Created with CodeSandbox
