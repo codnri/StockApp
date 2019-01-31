@@ -1,16 +1,23 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import App from "./component/App";
+import { Provider } from "react-redux";
+import { createStore, combineReducers, applyMiddleware, compose } from "redux";
+import stocksReducer from "./reducers/stocks";
 
 import "./styles.css";
 
-function App() {
-  return (
-    <div className="App">
-      <h1>Hello CodeSandbox </h1>
-      <h2>Start editing to see some magic happen!</h2>
-    </div>
-  );
-}
+const store = createStore(
+  combineReducers({
+    stocks: stocksReducer
+  })
+  //composeEnhancers(applyMiddleware(thunk))
+);
 
 const rootElement = document.getElementById("root");
-ReactDOM.render(<App />, rootElement);
+ReactDOM.render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  rootElement
+);
