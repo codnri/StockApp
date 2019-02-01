@@ -1,5 +1,6 @@
 import React from "react";
 import StockTable from "../containers/StockTable";
+import StockSearcher from "../containers/StockSearcher";
 const App = () => {
   return (
     <div className="App">
@@ -8,6 +9,9 @@ const App = () => {
         // <StockSearcher />
         //<StockSummary />
       }
+      <br />
+      <StockSearcher />
+      <br />
       <StockTable />
     </div>
   );

@@ -1,8 +1,8 @@
 const stocks = (state = { stockList: [] }, action) => {
   switch (action.type) {
-    case "ADD_TODO":
+    case "ADD_STOCK":
       return {
-        todoList: [...state.stockList, action.stock]
+        stockList: [...state.stockList, action.stock]
       };
     // 初期条件を忘れずに書く
     default:

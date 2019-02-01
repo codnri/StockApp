@@ -9,7 +9,7 @@ import "./styles.css";
 
 const store = createStore(
   combineReducers({
-    stocks: stocksReducer
+    stocksReducer: stocksReducer
   })
   //composeEnhancers(applyMiddleware(thunk))
 );
