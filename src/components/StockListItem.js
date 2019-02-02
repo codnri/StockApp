@@ -76,8 +76,12 @@ class StockListItem extends React.Component {
             <td>{this.props.stock.symbol}</td>
             <td>{this.props.stock.name}</td>
             <td>{this.props.stock.market_price}</td>
-            <td>{this.getTotalValue()}</td>
-            <td>{this.getProfit()}</td>
+            <td>
+              {this.props.stock.transactions.length > 0 && this.getTotalValue()}
+            </td>
+            <td>
+              {this.props.stock.transactions.length > 0 && this.getProfit()}
+            </td>
             <td>
               <i
                 id={this.props.stock.id}
@@ -88,21 +92,22 @@ class StockListItem extends React.Component {
           </tr>
         </tbody>
         <tbody id={"group-of-rows-" + this.props.num} className="collapse">
-          {this.props.stock.transactions.map((transaction, index) => {
-            return (
-              <tr key={index}>
-                <td>
-                  <a href="">Edit</a> | <a href="">Del</a>
-                </td>
-                <td>
-                  {moment(transaction.purchase_date).format("YYYY/MM/DD")}
-                </td>
-                <td>{transaction.quantity}</td>
-                <td>@{transaction.purchase_price}</td>
-                <td>{transaction.quantity * transaction.purchase_price}</td>
-              </tr>
-            );
-          })}
+          {this.props.stock.transactions.length > 0 &&
+            this.props.stock.transactions.map((transaction, index) => {
+              return (
+                <tr key={index}>
+                  <td>
+                    <a href="">Edit</a> | <a href="">Del</a>
+                  </td>
+                  <td>
+                    {moment(transaction.purchase_date).format("YYYY/MM/DD")}
+                  </td>
+                  <td>{transaction.quantity}</td>
+                  <td>@{transaction.purchase_price}</td>
+                  <td>{transaction.quantity * transaction.purchase_price}</td>
+                </tr>
+              );
+            })}
 
           <tr>
             <td>

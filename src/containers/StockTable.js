@@ -54,7 +54,7 @@ class StockTable extends React.Component {
           purchase_date: 4444,
           purchase_price: 150,
           quantity: 10,
-          id: "qfaqef333gvwaca--ee"
+          id: "qfaqeef333gvwaca--ee"
         }
       ]
     };
