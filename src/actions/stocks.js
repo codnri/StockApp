@@ -4,3 +4,8 @@ export const addStock = stock => ({
   id: uuid(),
   stock
 });
+
+export const removeStock = stock => ({
+  type: "REMOVE_STOCK",
+  id: stock.id
+});

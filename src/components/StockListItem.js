@@ -52,27 +52,39 @@ class StockListItem extends React.Component {
     );
     return this.getTotalValue() - totalCost;
   };
+
+  clickDelButton = e => {
+    // console.log("clickDelButton");
+    return this.props.clickDelButton(e);
+  };
   render() {
     return (
       <>
         <tbody>
-          <tr
-            className="clickable"
-            data-toggle="collapse"
-            data-target={"#group-of-rows-" + this.props.num}
-            aria-expanded="false"
-            aria-controls={"group-of-rows-" + this.props.num}
-          >
-            <td>
-              &nbsp;&nbsp;{" "}
+          <tr>
+            <td
+              className="clickable"
+              data-toggle="collapse"
+              data-target={"#group-of-rows-" + this.props.num}
+              aria-expanded="false"
+              aria-controls={"group-of-rows-" + this.props.num}
+            >
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               <i className="fas fa-plus-square" aria-hidden="true" />
-              &nbsp;&nbsp;
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             </td>
             <td>{this.props.stock.symbol}</td>
             <td>{this.props.stock.name}</td>
             <td>{this.props.stock.market_price}</td>
             <td>{this.getTotalValue()}</td>
             <td>{this.getProfit()}</td>
+            <td>
+              <i
+                id={this.props.stock.id}
+                className="fas fa-trash-alt fa-xs"
+                onClick={this.clickDelButton}
+              />
+            </td>
           </tr>
         </tbody>
         <tbody id={"group-of-rows-" + this.props.num} className="collapse">

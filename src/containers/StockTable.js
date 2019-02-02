@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { addStock } from "../actions/stocks";
+import { addStock, removeStock } from "../actions/stocks";
 import StockListItem from "../components/StockListItem";
 class StockTable extends React.Component {
   constructor(props) {
@@ -61,6 +61,16 @@ class StockTable extends React.Component {
     this.props.addStock(crm);
     this.props.addStock(appl);
   }
+  clickDelButton = e => {
+    console.log("parent clickDelButton");
+    let clicked_index = e.target.id;
+    console.log(clicked_index);
+    let [stock] = this.props.stockState.stockList.filter(
+      el => el.id == clicked_index
+    );
+    console.log(stock);
+    this.props.removeStock(stock);
+  };
   render() {
     return (
       <div className="container">
@@ -74,11 +84,19 @@ class StockTable extends React.Component {
               <th>Mkt Price</th>
               <th>Total Value</th>
               <th>Profit</th>
+              <th />
             </tr>
           </thead>
           {this.props.stockState.stockList.length != 0 &&
             this.props.stockState.stockList.map((stock, index) => {
-              return <StockListItem key={index} stock={stock} num={index} />;
+              return (
+                <StockListItem
+                  key={index}
+                  stock={stock}
+                  num={index}
+                  clickDelButton={this.clickDelButton}
+                />
+              );
             })}
         </table>
       </div>
@@ -94,7 +112,8 @@ const mapStateToProps = (state, props) => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    addStock: stock => dispatch(addStock(stock))
+    addStock: stock => dispatch(addStock(stock)),
+    removeStock: stock => dispatch(removeStock(stock))
   };
 };
 export default connect(
